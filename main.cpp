@@ -655,6 +655,10 @@ void RenderUI() {
     NewFrame();
     ImGuiStyle& style = GetStyle();
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f,0.0f,0.0f,1.0f);
+    ImVec4 activeColor = ImVec4(0.008f, 0.031f, 0.231f, 1.0f);
+    style.Colors[ImGuiCol_TitleBg]         = activeColor;
+    style.Colors[ImGuiCol_TitleBgActive]   = activeColor;
+    style.Colors[ImGuiCol_TitleBgCollapsed] = activeColor;
     PushFont(io.FontDefault);
     
     //STYLE 1
@@ -1095,6 +1099,9 @@ void RenderUI() {
         }else{
             penCol = false;
             drawnPoints.clear();
+            if(!showLayang && !showBalok && !showPentagon && !showPrismaSegienam){
+                showLayang=true;
+            }
             SetCursorPos(ImVec2(25,87));
             if (Button("Reset Kamera",ImVec2(300,30)))
             {
@@ -1151,6 +1158,7 @@ void RenderUI() {
         {
             Text("KUNCI : PERGERAKAN");
             Text("W : MAJU, S : MUNDUR, A : KIRI, D : KANAN, Q : ATAS, E : BAWAH");
+            Text("KLIK + DRAG : ROTASI KAMERA");
         }
         else if (isFreeDraw){
             Text("KUNCI : AKSI");
