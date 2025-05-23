@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/Kuliah/Semester 6/Grafika Komputer/project with vs/build/cmake_install.cmake",
+		"D:/Kuliah/Semester 6/Grafika Komputer/project with vs/build/lib/glfw/cmake_install.cmake",
+		"D:/Kuliah/Semester 6/Grafika Komputer/project with vs/build/lib/glfw/src/cmake_install.cmake",
+		"D:/Kuliah/Semester 6/Grafika Komputer/project with vs/build/lib/glfw/docs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

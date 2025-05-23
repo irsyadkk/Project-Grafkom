@@ -1,0 +1,1 @@
+  -L"D:/Kuliah/Semester 6/Grafika Komputer/project with vs/lib/glew/lib/Release/x64"  lib/glfw/src/libglfw3.a -lglew32s -lopengl32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
