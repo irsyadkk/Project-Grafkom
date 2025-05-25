@@ -964,6 +964,7 @@ void RenderUI() {
         {
             Text("KARTESIUS : X = MERAH, Y = HIJAU, Z = BIRU");
             Text("Q : ZOOM OUT, E : ZOOM IN");
+            Text("R : ROTASI, C : TOGGLE CARTE");
         }
     }
     End();
