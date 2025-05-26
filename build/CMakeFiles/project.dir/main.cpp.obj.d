@@ -73,6 +73,17 @@ CMakeFiles/project.dir/main.cpp.obj: \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_cmp.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/math.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_abs.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/syslimits.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/limits.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/malloc.h \
  D:/Kuliah/Semester\ 6/Grafika\ Komputer/project\ with\ vs/lib/imgui/imgui.h \
  D:/Kuliah/Semester\ 6/Grafika\ Komputer/project\ with\ vs/lib/imgui/imconfig.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/float.h \
@@ -83,15 +94,6 @@ CMakeFiles/project.dir/main.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/string.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/string_s.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/assert.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/syslimits.h \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/limits.h \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/malloc.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_abs.h \
  D:/Kuliah/Semester\ 6/Grafika\ Komputer/project\ with\ vs/lib/imgui/backends/imgui_impl_glfw.h \
  D:/Kuliah/Semester\ 6/Grafika\ Komputer/project\ with\ vs/lib/imgui/backends/imgui_impl_opengl3.h

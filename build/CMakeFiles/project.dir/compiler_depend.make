@@ -1034,6 +1034,7 @@ CMakeFiles/project.dir/main.cpp.obj: D:/Kuliah/Semester\ 6/Grafika\ Komputer/pro
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/chrono \
+  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdint \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib \
@@ -1076,6 +1077,7 @@ CMakeFiles/project.dir/main.cpp.obj: D:/Kuliah/Semester\ 6/Grafika\ Komputer/pro
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/inttypes.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/limits.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/malloc.h \
+  C:/TDM-GCC-64/x86_64-w64-mingw32/include/math.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_time.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \

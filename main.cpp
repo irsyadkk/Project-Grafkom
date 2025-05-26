@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include <vector>
+#include <cmath>
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
@@ -12,7 +13,7 @@ using namespace chrono;
 
 GLFWwindow* window = NULL;
 steady_clock::time_point lastInputTime = steady_clock::now();
-vector<ImVec2> drawnPoints;
+vector<vector<ImVec2>> drawnPoints;
 
 bool showCarte = false;
 bool open = true;
@@ -136,10 +137,42 @@ void inputlistener(){
                 hasInput = true;
             }
     }
+
+    //T
+    if (IsKeyPressed(ImGuiKey_T, false))
+    {
+        isFreeCam = false;
+        isRotate = false;
+       if (!isTranslateObject)
+        {
+            isTranslateObject=true;
+        }
+        else{
+            isTranslateObject=false;
+        }
+        hasInput=true;
+    }
+
+    //F
+    if (IsKeyPressed(ImGuiKey_F, false))
+    {
+        isTranslateObject = false;
+        isRotate = false;
+       if (!isFreeCam)
+        {
+            isFreeCam=true;
+        }
+        else{
+            isFreeCam=false;
+        }
+        hasInput=true;
+    }
     
     //R
-    if (IsKeyPressed(ImGuiKey_R))
+    if (IsKeyPressed(ImGuiKey_R, false))
     {
+        isTranslateObject = false;
+        isFreeCam = false;
        if (!isRotate)
         {
             isRotate=true;
@@ -151,7 +184,7 @@ void inputlistener(){
     }
 
     //C
-    if (IsKeyPressed(ImGuiKey_C))
+    if (IsKeyPressed(ImGuiKey_C, false))
     {
         if (!showCarte)
         {
@@ -294,11 +327,12 @@ void inputlistener(){
     //FREE DRAW
     if(isFreeDraw && !io.WantCaptureMouse)
     {
-        if (IsMouseDown(0))
+        if (IsMouseClicked(0))
         {
             isDragging = true;
             lastMouseX = mousePos.x;
             lastMouseY = mousePos.y;
+            drawnPoints.push_back({});
             hasInput = true;
         }
 
@@ -307,8 +341,24 @@ void inputlistener(){
             isDragging = false;
         }
         if (isDragging) {
-            ImVec2 pos = io.MousePos;
-            drawnPoints.push_back(pos);
+            ImVec2 currentPos = io.MousePos;
+            vector<ImVec2>& currentGroup = drawnPoints.back();
+
+            if (!currentGroup.empty()) {
+                ImVec2 lastPos = currentGroup.back();
+                float dx = currentPos.x - lastPos.x;
+                float dy = currentPos.y - lastPos.y;
+                float distance = sqrtf(dx * dx + dy * dy);
+                int steps = (int)(distance / 1.0f);
+
+                for (int i = 1; i <= steps; ++i) {
+                    float t = (float)i / (float)steps;
+                    ImVec2 interpolated = ImVec2(lastPos.x + t * dx, lastPos.y + t * dy);
+                    currentGroup.push_back(interpolated);
+                }
+            }
+
+            currentGroup.push_back(currentPos);
             hasInput = true;
         }
         if (IsKeyPressed(ImGuiKey_Backspace))
@@ -884,8 +934,18 @@ void RenderUI() {
             SetCursorPosX(30);
             SliderFloat("Thickness", &lineThickness,1.0f,8.0f);
             ImDrawList* drawList = GetBackgroundDrawList();
-            for (size_t i = 1; i < drawnPoints.size(); ++i) {
-                drawList->AddLine(drawnPoints[i - 1],drawnPoints[i],IM_COL32((int)(defaultPencilColor.x * 255),(int)(defaultPencilColor.y * 255),(int)(defaultPencilColor.z * 255),(int)(defaultPencilColor.w * 255)),lineThickness);
+            for (const auto& group : drawnPoints) {
+                for (size_t i = 1; i < group.size(); ++i) {
+                    drawList->AddLine(
+                        group[i - 1], group[i],
+                        IM_COL32(
+                            (int)(defaultPencilColor.x * 255),
+                            (int)(defaultPencilColor.y * 255),
+                            (int)(defaultPencilColor.z * 255),
+                            (int)(defaultPencilColor.w * 255)),
+                        lineThickness
+                    );
+                }
             }
             SetCursorPos(ImVec2(25,87));
             if (Button("Reset Gambar",ImVec2(300,30)))
@@ -964,7 +1024,7 @@ void RenderUI() {
         {
             Text("KARTESIUS : X = MERAH, Y = HIJAU, Z = BIRU");
             Text("Q : ZOOM OUT, E : ZOOM IN");
-            Text("R : ROTASI, C : TOGGLE CARTE");
+            Text("R : ROTASI, T : TRANSLASI, C : TOGGLE CARTE, F : FREE CAM");
         }
     }
     End();
