@@ -11,6 +11,7 @@ using namespace ImGui;
 using namespace std;
 using namespace chrono;
 
+// DECLARE VAR
 GLFWwindow* window = NULL;
 steady_clock::time_point lastInputTime = steady_clock::now();
 vector<vector<ImVec2>> drawnPoints;
@@ -330,8 +331,6 @@ void inputlistener(){
         if (IsMouseClicked(0))
         {
             isDragging = true;
-            lastMouseX = mousePos.x;
-            lastMouseY = mousePos.y;
             drawnPoints.push_back({});
             hasInput = true;
         }
@@ -342,23 +341,11 @@ void inputlistener(){
         }
         if (isDragging) {
             ImVec2 currentPos = io.MousePos;
-            vector<ImVec2>& currentGroup = drawnPoints.back();
-
-            if (!currentGroup.empty()) {
-                ImVec2 lastPos = currentGroup.back();
-                float dx = currentPos.x - lastPos.x;
-                float dy = currentPos.y - lastPos.y;
-                float distance = sqrtf(dx * dx + dy * dy);
-                int steps = (int)(distance / 1.0f);
-
-                for (int i = 1; i <= steps; ++i) {
-                    float t = (float)i / (float)steps;
-                    ImVec2 interpolated = ImVec2(lastPos.x + t * dx, lastPos.y + t * dy);
-                    currentGroup.push_back(interpolated);
-                }
+            if (drawnPoints.empty())
+            {
+                drawnPoints.push_back({});
             }
-
-            currentGroup.push_back(currentPos);
+            drawnPoints.back().push_back(currentPos);
             hasInput = true;
         }
         if (IsKeyPressed(ImGuiKey_Backspace))
@@ -934,10 +921,10 @@ void RenderUI() {
             SetCursorPosX(30);
             SliderFloat("Thickness", &lineThickness,1.0f,8.0f);
             ImDrawList* drawList = GetBackgroundDrawList();
-            for (const auto& group : drawnPoints) {
-                for (size_t i = 1; i < group.size(); ++i) {
+            for (const auto& stroke : drawnPoints) {
+                for (size_t i = 1; i < stroke.size(); ++i) {
                     drawList->AddLine(
-                        group[i - 1], group[i],
+                        stroke[i - 1], stroke[i],
                         IM_COL32(
                             (int)(defaultPencilColor.x * 255),
                             (int)(defaultPencilColor.y * 255),
