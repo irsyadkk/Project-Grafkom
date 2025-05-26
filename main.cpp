@@ -93,7 +93,7 @@ bool Init() {
 void idleanim(){
     auto now = steady_clock::now();
     duration<float> elapsed = now - lastInputTime;
-    if (elapsed.count() >= 5.0f) {
+    if (elapsed.count() >= 10.0f) {
         isIdle = true;
     }
     if (isIdle)
@@ -246,8 +246,8 @@ void inputlistener(){
             float deltaX = mousePos.x - lastMouseX;
             float deltaY = mousePos.y - lastMouseY;
 
-            yAxis += deltaX * 0.3f;
-            xAxis += deltaY * 0.3f;
+            yAxis += deltaX * 0.25f;
+            xAxis += deltaY * 0.25f;
             lastMouseX = mousePos.x;
             lastMouseY = mousePos.y;
             hasInput = true;
@@ -406,7 +406,7 @@ void kite(ImVec4 color,ImVec4 border) {
     glVertex3f(0.4f, 0.3f, 0.0f);
     glEnd();
 
-    // OUTER
+    //BORDER
     glLineWidth(borderThickness);
     glColor3f(border.x, border.y, border.z);
     glBegin(GL_LINES);
@@ -422,7 +422,7 @@ void kite(ImVec4 color,ImVec4 border) {
     glLineWidth(1.0f);
 }
 
-// PENTAGON
+//PENTAGON
 void pentagon(ImVec4 color, ImVec4 border) {
     glColor3f(color.x, color.y, color.z);
     glBegin(GL_POLYGON);
@@ -433,7 +433,7 @@ void pentagon(ImVec4 color, ImVec4 border) {
     glVertex3f(0.45f, 0.2f, 0.0f);
     glEnd();
 
-    //OUTER
+    //BORDER
     glLineWidth(borderThickness);
     glColor3f(border.x, border.y, border.z);
     glBegin(GL_LINES);
@@ -492,7 +492,7 @@ void balok(ImVec4 color, ImVec4 border){
   	glVertex3f(-1.0f, -0.5f, -0.5f);
     glEnd();
 
-    //OUTER
+    //BORDER
     glLineWidth(borderThickness);
     glColor3f(border.x, border.y, border.z);
     glBegin(GL_LINES);
@@ -543,6 +543,7 @@ void balok(ImVec4 color, ImVec4 border){
     glLineWidth(1.0f);
 }
 
+//HEXA PRISM
 void hexaprism(ImVec4 color, ImVec4 border) {
     glColor3f(color.x, color.y, color.z);
 
@@ -604,7 +605,7 @@ void hexaprism(ImVec4 color, ImVec4 border) {
     glVertex3f(-0.5f,  0.5f, -0.5f);
     glEnd();
 
-    //OUTER
+    //BORDER
     glLineWidth(borderThickness);
     glColor3f(border.x, border.y, border.z);
     glBegin(GL_LINES);
@@ -711,7 +712,6 @@ void RenderUI() {
     style.Colors[ImGuiCol_TitleBgCollapsed] = activeColor;
     PushFont(io.FontDefault);
 
-    //STYLE 2
     //OBJEK
     SetNextWindowSize(ImVec2(350,180));
     SetNextWindowPos(ImVec2(1570,0));
