@@ -700,196 +700,229 @@ void RenderUI() {
     PushFont(io.FontDefault);
 
     //OBJEK
-    SetNextWindowSize(ImVec2(350,180));
-    SetNextWindowPos(ImVec2(1570,0));
-    if (Begin("Objek", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        SetCursorPos(ImVec2(35,45));
-        if (Button("Layang - layang",ImVec2(130,50))) {
-            if (!showLayang)
-            {
-                showLayang=true;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showBalok = false;
-                isFreeDraw = false;
+        SetNextWindowSize(ImVec2(350,180));
+        SetNextWindowPos(ImVec2(1570,0));
+        if (Begin("Objek", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+        {
+            SetCursorPos(ImVec2(35,45));
+            if (Button("Layang - layang",ImVec2(130,50))) {
+                if (!showLayang)
+                {
+                    showLayang=true;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                    isFreeDraw = false;
+                }
+                else{
+                    showLayang = false;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                }
             }
-            else{
-                showLayang = false;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showBalok = false;
+            SetCursorPos(ImVec2(180,45));
+            if (Button("Segilima",ImVec2(130,50))) {
+                if (!showPentagon)
+                {
+                    showPentagon=true;
+                    showLayang = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                    isFreeDraw = false;
+                }
+                else{
+                    showLayang = false;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                }
+            }
+            SetCursorPos(ImVec2(35,110));
+            if (Button("Prisma Segienam",(ImVec2(130,50)))){
+                if (!showPrismaSegienam)
+                {
+                    showPrismaSegienam=true;
+                    showPentagon = false;
+                    showLayang = false;
+                    showBalok = false;
+                    isFreeDraw = false;
+                }
+                else{
+                    showLayang = false;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                }
+            }
+            SetCursorPos(ImVec2(180,110));
+            if (Button("Balok",ImVec2(130,50))) {
+                if (!showBalok)
+                {
+                    showBalok=true;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showLayang = false;
+                    isFreeDraw = false;
+                }
+                else{
+                    showLayang = false;
+                    showPentagon = false;
+                    showPrismaSegienam = false;
+                    showBalok = false;
+                }
             }
         }
-        SetCursorPos(ImVec2(180,45));
-        if (Button("Segilima",ImVec2(130,50))) {
-            if (!showPentagon)
-            {
-                showPentagon=true;
-                showLayang = false;
-                showPrismaSegienam = false;
-                showBalok = false;
-                isFreeDraw = false;
-            }
-            else{
-                showLayang = false;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showBalok = false;
-            }
-        }
-        SetCursorPos(ImVec2(35,110));
-        if (Button("Prisma Segienam",(ImVec2(130,50)))){
-            if (!showPrismaSegienam)
-            {
-                showPrismaSegienam=true;
-                showPentagon = false;
-                showLayang = false;
-                showBalok = false;
-                isFreeDraw = false;
-            }
-            else{
-                showLayang = false;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showBalok = false;
-            }
-        }
-        SetCursorPos(ImVec2(180,110));
-        if (Button("Balok",ImVec2(130,50))) {
-            if (!showBalok)
-            {
-                showBalok=true;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showLayang = false;
-                isFreeDraw = false;
-            }
-            else{
-                showLayang = false;
-                showPentagon = false;
-                showPrismaSegienam = false;
-                showBalok = false;
-            }
-        }
+        End();
     }
-    End();
 
+    
     //WARNA
-    SetNextWindowSize(ImVec2(350,260));
-    SetNextWindowPos(ImVec2(1570,180));
-    if (Begin("Warna", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        if (penCol)
+        SetNextWindowSize(ImVec2(350,260));
+        SetNextWindowPos(ImVec2(1570,180));
+        if (Begin("Warna", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
         {
-            SetCursorPos(ImVec2(250,130));
-            RadioButton("Pensil", true);
-            SetCursorPos(ImVec2(10,40));
-            ColorPicker3("Warna Pensil", (float*)&defaultPencilColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
-        }
-        else
-        {
-            SetCursorPos(ImVec2(250,130));
-            RadioButton("Objek", &colType, 0);
-            SetCursorPos(ImVec2(250,170));
-            RadioButton("Border", &colType, 1);
-            if (colType == 0)
+            if (penCol)
             {
+                SetCursorPos(ImVec2(250,130));
+                RadioButton("Pensil", true);
                 SetCursorPos(ImVec2(10,40));
-                ColorPicker3("Warna Objek", (float*)&defaultObjColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
+                ColorPicker3("Warna Pensil", (float*)&defaultPencilColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
             }
-            else if (colType == 1)
+            else
             {
-                SetCursorPos(ImVec2(10,40));
-                ColorPicker3("Warna Border", (float*)&defaultBorColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
-            }      
+                SetCursorPos(ImVec2(250,130));
+                RadioButton("Objek", &colType, 0);
+                SetCursorPos(ImVec2(250,170));
+                RadioButton("Border", &colType, 1);
+                if (colType == 0)
+                {
+                    SetCursorPos(ImVec2(10,40));
+                    ColorPicker3("Warna Objek", (float*)&defaultObjColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
+                }
+                else if (colType == 1)
+                {
+                    SetCursorPos(ImVec2(10,40));
+                    ColorPicker3("Warna Border", (float*)&defaultBorColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
+                }      
+            }
         }
+        End();
     }
-    End();
+    if (isFreeDraw)
+    {
+        SetNextWindowSize(ImVec2(350,260));
+        SetNextWindowPos(ImVec2(1570,610));
+        if (Begin("Warna", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+        {
+            if (penCol)
+            {
+                SetCursorPos(ImVec2(250,130));
+                RadioButton("Pensil", true);
+                SetCursorPos(ImVec2(10,40));
+                ColorPicker3("Warna Pensil", (float*)&defaultPencilColor, ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoInputs);
+            }
+        }
+        End();
+    }
+    
 
     //ROTASI
-    SetNextWindowSize(ImVec2(350,115));
-    SetNextWindowPos(ImVec2(1570,440));
-    if (Begin("Rotasi", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        SetCursorPos(ImVec2(35,35));
-        Checkbox("Rotasi", &isRotate);
-        if (isRotate)
+        SetNextWindowSize(ImVec2(350,115));
+        SetNextWindowPos(ImVec2(1570,440));
+        if (Begin("Rotasi", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
         {
-            isTranslateObject=false;
-            isFreeCam=false;
-            isFreeDraw=false;
+            SetCursorPos(ImVec2(35,35));
+            Checkbox("Rotasi", &isRotate);
+            if (isRotate)
+            {
+                isTranslateObject=false;
+                isFreeCam=false;
+                isFreeDraw=false;
+            }
+            SetCursorPos(ImVec2(25,70));
+            if (Button("Reset Rotasi",ImVec2(300,30))) {
+                rotX=0;
+                rotY=0;
+                rotZ=0;
+            }
         }
-        SetCursorPos(ImVec2(25,70));
-        if (Button("Reset Rotasi",ImVec2(300,30))) {
-            rotX=0;
-            rotY=0;
-            rotZ=0;
-        }
+        End();
     }
-    End();
 
     //SKALA
-    SetNextWindowSize(ImVec2(350,200));
-    SetNextWindowPos(ImVec2(1570,555));
-    if (Begin("Skala", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        SetCursorPos(ImVec2(35,35));
-        RadioButton("Perbesar / Perkecil",&scaleType,0);
-        SetCursorPos(ImVec2(220,35));
-        RadioButton("Bebas",&scaleType,1);
-        if(scaleType==0){
-            SetCursorPos(ImVec2(35,65));
-            SliderFloat("Skala",&scaleX,0.01f,7.0f);
-            SetCursorPos(ImVec2(25,150));
-            if (Button("Reset Skala",ImVec2(300,30)))
-            {
-                scaleX=1.0f;
-                scaleY=1.0f;
-                scaleZ=1.0f;
-            }
-        }
-        else if (scaleType == 1)
+        SetNextWindowSize(ImVec2(350,200));
+        SetNextWindowPos(ImVec2(1570,555));
+        if (Begin("Skala", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
         {
-            SetCursorPos(ImVec2(35,65));
-            SliderFloat("Skala X",&scaleX,0.01f,7.0f);
-            SetCursorPos(ImVec2(35,90));
-            SliderFloat("Skala Y",&scaleY,0.01f,7.0f);
-            SetCursorPos(ImVec2(35,115));
-            SliderFloat("Skala Z",&scaleZ,0.01f,7.0f);
-            SetCursorPos(ImVec2(25,150));
-            if (Button("Reset Skala",ImVec2(300,30)))
+            SetCursorPos(ImVec2(35,35));
+            RadioButton("Perbesar / Perkecil",&scaleType,0);
+            SetCursorPos(ImVec2(220,35));
+            RadioButton("Bebas",&scaleType,1);
+            if(scaleType==0){
+                SetCursorPos(ImVec2(35,65));
+                SliderFloat("Skala",&scaleX,0.01f,7.0f);
+                SetCursorPos(ImVec2(25,150));
+                if (Button("Reset Skala",ImVec2(300,30)))
+                {
+                    scaleX=1.0f;
+                    scaleY=1.0f;
+                    scaleZ=1.0f;
+                }
+            }
+            else if (scaleType == 1)
             {
-                scaleX=1.0f;
-                scaleY=1.0f;
-                scaleZ=1.0f;
+                SetCursorPos(ImVec2(35,65));
+                SliderFloat("Skala X",&scaleX,0.01f,7.0f);
+                SetCursorPos(ImVec2(35,90));
+                SliderFloat("Skala Y",&scaleY,0.01f,7.0f);
+                SetCursorPos(ImVec2(35,115));
+                SliderFloat("Skala Z",&scaleZ,0.01f,7.0f);
+                SetCursorPos(ImVec2(25,150));
+                if (Button("Reset Skala",ImVec2(300,30)))
+                {
+                    scaleX=1.0f;
+                    scaleY=1.0f;
+                    scaleZ=1.0f;
+                }
             }
         }
+        End();
     }
-    End();
 
     //TRANSLASI
-    SetNextWindowSize(ImVec2(350,115));
-    SetNextWindowPos(ImVec2(1570,755));
-    if (Begin("Translasi", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        SetCursorPos(ImVec2(35,35));
-        Checkbox("Translasi", &isTranslateObject);
-        if (isTranslateObject)
+        SetNextWindowSize(ImVec2(350,115));
+        SetNextWindowPos(ImVec2(1570,755));
+        if (Begin("Translasi", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
         {
-            isRotate=false;
-            isFreeCam=false;
-            isFreeDraw=false;
+            SetCursorPos(ImVec2(35,35));
+            Checkbox("Translasi", &isTranslateObject);
+            if (isTranslateObject)
+            {
+                isRotate=false;
+                isFreeCam=false;
+                isFreeDraw=false;
+            }
+            SetCursorPos(ImVec2(25,70));
+            if (Button("Reset Translasi",ImVec2(300,30)))
+            {
+                objX=0.0f;
+                objY=0.0f;
+                objZ=0.0f;
+            }
         }
-        SetCursorPos(ImVec2(25,70));
-        if (Button("Reset Translasi",ImVec2(300,30)))
-        {
-            objX=0.0f;
-            objY=0.0f;
-            objZ=0.0f;
-        }
+        End();
     }
-    End();
 
     //MISC
     SetNextWindowSize(ImVec2(350,210));
@@ -959,18 +992,23 @@ void RenderUI() {
     End();
 
     //ZOOM
-    SetNextWindowSize(ImVec2(70,180));
-    SetNextWindowPos(ImVec2(1500,0));
-    if (Begin("Zoom", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration))
+    if (!isFreeDraw)
     {
-        middletext("ZOOM");
-        SetCursorPos(ImVec2(20,35));
-        VSliderFloat("##Depth",ImVec2(30,130),&depth,-20.0f,-2.0f, "");
+        SetNextWindowSize(ImVec2(70,180));
+        SetNextWindowPos(ImVec2(1500,0));
+        if (Begin("Zoom", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration))
+        {
+            middletext("ZOOM");
+            SetCursorPos(ImVec2(20,35));
+            VSliderFloat("##Depth",ImVec2(30,130),&depth,-20.0f,-2.0f, "");
+        }
+        End();
     }
-    End();
+    
+
     
     //BORDER THICKNESS
-    if (showLayang || showPentagon || showBalok || showPrismaSegienam)
+    if (showLayang || showPentagon || showBalok || showPrismaSegienam && !isFreeDraw)
     {
         SetNextWindowSize(ImVec2(70,180));
         SetNextWindowPos(ImVec2(1500,180));
@@ -984,37 +1022,42 @@ void RenderUI() {
     }
 
     //NOTE
-    SetNextWindowSize(ImVec2(500,100));
-    SetNextWindowPos(ImVec2(0,0));
-    if (Begin("NOTE", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
+    if (!isFreeDraw)
     {
-        if (isRotate)
+        SetNextWindowSize(ImVec2(500,100));
+        SetNextWindowPos(ImVec2(0,0));
+        if (Begin("NOTE", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize))
         {
-            Text("KUNCI : ROTASI");
-            Text("W : -X, S : +X, A : -Y, D : +Y, Q : -Z, E : +Z");
+            if (isRotate)
+            {
+                Text("KUNCI : ROTASI");
+                Text("W : -X, S : +X, A : -Y, D : +Y, Q : -Z, E : +Z");
+            }
+            else if (isTranslateObject){
+                Text("KUNCI : TRANSLASI");
+                Text("W : +Y, S : -Y, A : -X, D : +X, Q : -Z, E : +Z");
+            }
+            else if (isFreeCam)
+            {
+                Text("KUNCI : PERGERAKAN");
+                Text("W : MAJU, S : MUNDUR, A : KIRI, D : KANAN, Q : ATAS, E : BAWAH");
+                Text("KLIK + DRAG : ROTASI KAMERA");
+            }
+            else if (isFreeDraw){
+                Text("KUNCI : AKSI");
+                Text("KLIK KIRI + DRAG : GAMBAR, BACKSPACE : RESET GAMBAR");
+            }
+            else
+            {
+                Text("KARTESIUS : X = MERAH, Y = HIJAU, Z = BIRU");
+                Text("Q : ZOOM OUT, E : ZOOM IN");
+                Text("R : ROTASI, T : TRANSLASI, C : TOGGLE CARTE, F : FREE CAM");
+            }
         }
-        else if (isTranslateObject){
-            Text("KUNCI : TRANSLASI");
-            Text("W : +Y, S : -Y, A : -X, D : +X, Q : -Z, E : +Z");
-        }
-        else if (isFreeCam)
-        {
-            Text("KUNCI : PERGERAKAN");
-            Text("W : MAJU, S : MUNDUR, A : KIRI, D : KANAN, Q : ATAS, E : BAWAH");
-            Text("KLIK + DRAG : ROTASI KAMERA");
-        }
-        else if (isFreeDraw){
-            Text("KUNCI : AKSI");
-            Text("KLIK KIRI + DRAG : GAMBAR, BACKSPACE : RESET GAMBAR");
-        }
-        else
-        {
-            Text("KARTESIUS : X = MERAH, Y = HIJAU, Z = BIRU");
-            Text("Q : ZOOM OUT, E : ZOOM IN");
-            Text("R : ROTASI, T : TRANSLASI, C : TOGGLE CARTE, F : FREE CAM");
-        }
+        End();
     }
-    End();
+    
+    
     
     PopFont();
     Render();
